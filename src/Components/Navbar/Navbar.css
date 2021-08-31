@@ -7,11 +7,12 @@
 
   z-index: 1;
   display: flex;
+  transition-timing-function: ease-in;
+  transition: all 0.3s;
 }
 
 .navBlackBg {
   background-color: #111;
-  transition: all 0.15s ease-in;
 }
 
 .nav-container {
@@ -19,6 +20,7 @@
   padding: 1.4rem 2.5rem;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .nav-logo {
@@ -29,4 +31,15 @@
 .nav-avatar {
   height: 30px;
   object-fit: contain;
+}
+
+@media screen and (max-width: 768px) {
+  .nav-container {
+    padding: 20px;
+  }
+
+  .nav-logo {
+    height: 25px;
+    object-fit: contain;
+  }
 }
