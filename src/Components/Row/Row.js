@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import YouTube from 'react-youtube'
+// import YouTube from 'react-youtube'
 import axios from '../../axios.js'
 import './Row.css'
 import movieTrailer from 'movie-trailer';
@@ -20,14 +20,14 @@ function Row({ title, fetchUrl, isLarge }) {
     fetchData();
   }, [fetchUrl]);
 
-  const opts = {
-    height: '390',
-    width: '100%',
-    playerVars: {
-      // https://developers.google.com/youtube/player_parameters
-      autoplay: 1,
-    },
-  };
+  // const opts = {
+  //   height: '390',
+  //   width: '100%',
+  //   playerVars: {
+  //     // https://developers.google.com/youtube/player_parameters
+  //     autoplay: 1,
+  //   },
+  // };
 
   const handleClick = movie => {
     if (trailerUrl) {
