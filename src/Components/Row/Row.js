@@ -3,11 +3,13 @@ import YouTube from 'react-youtube'
 import axios from '../../axios.js'
 import './Row.css'
 import movieTrailer from 'movie-trailer';
+import MovieDetail from '../MovieDetail/MovieDetail.js';
 
 function Row({ title, fetchUrl, isLarge }) {
   const posterBaseUrl = `https://image.tmdb.org/t/p/original/`
   const [movies, setMovies] = useState([]);
   const [trailerUrl, setTrailerUrl] = useState('');
+  const [clickedMovie, setClickedMovie] = useState({})
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,6 +34,7 @@ function Row({ title, fetchUrl, isLarge }) {
       setTrailerUrl('')
     }
     else {
+      setClickedMovie(movie);
       movieTrailer(movie?.name || movie?.title || movie?.original_title || '')
         .then((url) => {
           const urlParams = new URLSearchParams(new URL(url).search)
@@ -59,7 +62,9 @@ function Row({ title, fetchUrl, isLarge }) {
             src={`${posterBaseUrl}${isLarge ? movie.poster_path : movie.backdrop_path}`} alt={movie.name} />
         ))}
       </div>
-      {trailerUrl && <YouTube videoId={trailerUrl} opts={opts} />}
+      {trailerUrl && <MovieDetail trailerUrl={trailerUrl} movie={clickedMovie} />
+        // <YouTube videoId={trailerUrl} opts={opts} />
+      }
     </div>
   )
 }
