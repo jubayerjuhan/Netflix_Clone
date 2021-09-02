@@ -8,7 +8,6 @@ import '../App.css'
 const Homepage = () => {
   return (
     <>
-      <Navbar />
       <div className="app">
         {/* <Navbar /> */}
         <Banner />

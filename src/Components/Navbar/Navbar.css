@@ -5,7 +5,7 @@
   width: 100%;
   /* background-color: #111; */
 
-  z-index: 1;
+  z-index: 1000;
   display: flex;
   transition-timing-function: ease-in;
   transition: all 0.3s;
@@ -17,7 +17,7 @@
 
 .nav-container {
   width: 100%;
-  padding: 1.4rem 2.5rem;
+  padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -33,6 +33,16 @@
   object-fit: contain;
 }
 
+.sign__in__btn {
+  padding: 10px 20px;
+  background: red;
+  color: #fff;
+  outline: none;
+  border: none;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
 @media screen and (max-width: 768px) {
   .nav-container {
     padding: 20px;
