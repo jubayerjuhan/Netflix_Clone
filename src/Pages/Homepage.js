@@ -1,6 +1,5 @@
 import React from 'react'
 import Banner from '../Components/Banner/Banner.js'
-import Navbar from '../Components/Navbar/Navbar.js'
 import Row from '../Components/Row/Row.js'
 import requests from "./../request";
 import '../App.css'
