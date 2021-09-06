@@ -4,7 +4,7 @@ import { getAuth, signInWithPopup, GoogleAuthProvider, signInWithEmailAndPasswor
 import { firebaseConfig } from "./firebaseconfig";
 import * as firebase from 'firebase/app'
 import { LoggedUser } from '../../App.js';
-import { useHistory } from 'react-router-dom';
+import { useLocation, useHistory } from "react-router-dom";
 firebase.initializeApp(firebaseConfig);
 
 const SignIn = () => {
@@ -12,6 +12,8 @@ const SignIn = () => {
   const [loginData, setLoginData] = useState({});
   const provider = new GoogleAuthProvider();
   const history = useHistory();
+  const location = useLocation();
+  let { from } = location.state || { from: { pathname: "/" } };
 
   const signInWithGoogle = () => {
     const auth = getAuth();
@@ -19,13 +21,9 @@ const SignIn = () => {
 
       .then((result) => {
         const user = result.user;
-        const userInfo = {
-          userName: user.displayName,
-          userPhoto: user.photoURL,
-        }
-        setLgdUserInfo(userInfo);
-        history.push('/')
-
+        const updatedUser = { ...user, ...lgdUserInfo, isLoggedIn: true };
+        setLgdUserInfo(updatedUser);
+        history.replace(from); //* Redirect to the page where it wants to go 
       }).catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
@@ -51,7 +49,6 @@ const SignIn = () => {
         lgdUserInfo.isLoggedIn = true;
         const userContext = { ...user, ...lgdUserInfo }
         setLgdUserInfo(userContext)
-        history.push('/')
 
       })
       .catch((error) => {

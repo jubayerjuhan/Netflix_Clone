@@ -3,12 +3,13 @@ import Banner from '../Components/Banner/Banner.js'
 import Row from '../Components/Row/Row.js'
 import requests from "./../request";
 import '../App.css'
+import Navbar from "./../Components/Navbar/Navbar";
 
 const Homepage = () => {
   return (
     <>
       <div className="app">
-        {/* <Navbar /> */}
+        <Navbar />
         <Banner />
         <div className="row-container">
           <Row title="NETFLIX ORIGINALS" isLarge={true} fetchUrl={requests.fetchNetflixOriginals} />

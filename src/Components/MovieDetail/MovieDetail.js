@@ -1,8 +1,11 @@
 import React from 'react'
 import YouTube from 'react-youtube'
 import './MovieDetail.css'
+import { useContext } from 'react'
+import { LoggedUser } from "./../../App";
 
 const MovieDetail = ({ movie, trailerUrl }) => {
+  const [lgdUserInfo, setLgdUserInfo] = useContext(LoggedUser)
   const opts = {
     height: '390',
     width: '640',
@@ -12,7 +15,22 @@ const MovieDetail = ({ movie, trailerUrl }) => {
       controls: 0,
     }
   }
-  console.log(movie)
+
+  console.log(lgdUserInfo);
+
+  const handlemyList = (movieId) => {
+    const previousMovies = JSON.parse(localStorage.getItem('myList'))
+
+    const updatedContext = { ...lgdUserInfo, myList: [...lgdUserInfo.myList, ...previousMovies, movieId] };
+    const uniqueId = [...new Set(updatedContext.myList)]
+    updatedContext.myList = uniqueId;
+    console.log(updatedContext);
+    setLgdUserInfo(updatedContext);
+    alert('Added To My List')
+    localStorage.setItem('myList', JSON.stringify(updatedContext.myList));
+  }
+
+  console.log(lgdUserInfo)
   return (
     <div className='movie_preview'>
       <div className='details'>
@@ -20,7 +38,9 @@ const MovieDetail = ({ movie, trailerUrl }) => {
         <p className='movie__overview'>{movie?.overview.length > 200 ? movie?.overview.slice(0, 200) + " ..." : movie?.overview}</p>
         <div className="preview__Buttons">
           <button className="preview__button">Play</button>
-          <button className="preview__button">My List</button>
+          <button
+            onClick={() => handlemyList(movie.id)}
+            className="preview__button">My List</button>
         </div>
       </div>
       <div className='video_section'>

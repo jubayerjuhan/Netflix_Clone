@@ -11,6 +11,9 @@
   transition: all 0.3s;
 }
 
+.nav-avatar {
+  border-radius: 50%;
+}
 .navBlackBg {
   background-color: #111;
 }
@@ -31,6 +34,19 @@
 .nav-avatar {
   height: 30px;
   object-fit: contain;
+}
+
+.nav-menu {
+  display: flex;
+  color: #fff;
+  align-items: center;
+}
+
+.my__list {
+  cursor: pointer;
+  margin-right: 20px;
+  text-decoration: none;
+  color: #fff;
 }
 
 .sign__in__btn {

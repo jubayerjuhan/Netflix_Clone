@@ -1,8 +1,11 @@
 .row {
-  margin-left: 20px;
+  margin: 0px 20px 0px 0px;
   color: #fff;
 }
 
+.row__title {
+  margin-left: 20px;
+}
 .row-posters {
   display: flex;
   overflow-y: hidden;
