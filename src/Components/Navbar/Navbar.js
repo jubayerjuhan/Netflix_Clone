@@ -27,7 +27,7 @@ const Navbar = () => {
         {lgdUserInfo?.photoURL || lgdUserInfo.isLoggedIn ?
           <div className="nav-menu">
             <p className='my__list' onClick={() => history.push('/user/my-list')}>My List</p>
-            <img className='nav-avatar' src={lgdUserInfo?.photoURL || "https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png"} alt="User Profile Pic" />
+            <img className='nav-avatar' onClick={() => history.push('/user/profile')} src={lgdUserInfo?.photoURL || "https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png"} alt="User Profile Pic" />
           </div>
           :
           <Link to='/sign-in'>

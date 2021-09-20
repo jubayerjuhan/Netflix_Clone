@@ -17,3 +17,12 @@
     top: -150px;
   }
 }
+
+.spinner {
+  margin: 0px auto;
+}
+.spinner-container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+}

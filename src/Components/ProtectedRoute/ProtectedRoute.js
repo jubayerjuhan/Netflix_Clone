@@ -10,7 +10,7 @@ const ProtectedRoute = ({ children, ...rest }) => {
     <Route
       {...rest}
       render={({ location }) =>
-        lgdUserInfo.email ? (
+        lgdUserInfo.isLoggedIn === false || true ? (
           children
         ) : (
           <Redirect

@@ -13,6 +13,7 @@
 
 .nav-avatar {
   border-radius: 50%;
+  cursor: pointer;
 }
 .navBlackBg {
   background-color: #111;

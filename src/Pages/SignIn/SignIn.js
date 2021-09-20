@@ -5,6 +5,7 @@ import { firebaseConfig } from "./firebaseconfig";
 import * as firebase from 'firebase/app'
 import { LoggedUser } from '../../App.js';
 import { useLocation, useHistory } from "react-router-dom";
+import Navbar from "./../../Components/Navbar/Navbar";
 firebase.initializeApp(firebaseConfig);
 
 const SignIn = () => {
@@ -49,7 +50,7 @@ const SignIn = () => {
         lgdUserInfo.isLoggedIn = true;
         const userContext = { ...user, ...lgdUserInfo }
         setLgdUserInfo(userContext)
-
+        history.push('/')
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -69,7 +70,7 @@ const SignIn = () => {
 
   return (
     <div className="login-page">
-
+      <Navbar></Navbar>
       <div className="login-container">
         <h1>Sign In</h1>
         <form className='login-form'>

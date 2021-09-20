@@ -13,27 +13,35 @@ export const LoggedUser = createContext();
 function App() {
   const [lgdUserInfo, setLgdUserInfo] = useState({
     isLoggedIn: false,
+    ui: { spinner: true },
     myList: []
   });
   console.warn(lgdUserInfo);
   return (
     <LoggedUser.Provider value={[lgdUserInfo, setLgdUserInfo]} >
+
+      {console.log(lgdUserInfo)}
       <Router>
         <Switch>
           <ProtectedRoute exact path="/">
             <Homepage></Homepage>
           </ProtectedRoute>
 
+          <ProtectedRoute path='/user/profile'>
+            <ProfileScreen />
+          </ProtectedRoute>
+
           <ProtectedRoute path="/user/my-list">
             <Mylist />
           </ProtectedRoute>
 
-          <ProtectedRoute path='/user/profile'>
+          <Route path='/user/profile'>
             <ProfileScreen></ProfileScreen>
-          </ProtectedRoute>
+          </Route>
 
           <Route path="/sign-in" component={SignIn} />
           <Route path="/register" component={Register} />
+
           <Route path="*">
             <NotFound />
           </Route>

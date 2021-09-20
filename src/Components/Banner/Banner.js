@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import axios from '../../axios'
 import './Banner.css'
 import requests from '../../request.js'
+import { LoggedUser } from "./../../App";
 
 const Banner = () => {
+  const [lgdUserInfo, setLgdUserInfo] = useContext(LoggedUser)
   const [movie, setMovie] = useState([]);
   useEffect(() => {
     const fetchBannerMovie = async () => {
@@ -19,6 +21,17 @@ const Banner = () => {
     return str?.length > n ? str.substr(0, n - 1) + '...' : str;
   }
 
+  //Add Banner Movie To My myList
+  const handlemyList = (movieId) => {
+
+    const updatedContext = { ...lgdUserInfo, myList: [...lgdUserInfo.myList, movieId] };
+    const uniqueId = [...new Set(updatedContext.myList)]
+    updatedContext.myList = uniqueId;
+    console.log(updatedContext);
+    setLgdUserInfo(updatedContext);
+    alert('Added To My List')
+    localStorage.setItem('myList', JSON.stringify(updatedContext.myList));
+  }
   return (
     <header className='banner'
       style={{
@@ -33,7 +46,9 @@ const Banner = () => {
         </h1>
         <div className="banner__buttons">
           <button className="banner__Button">Play</button>
-          <button className="banner__Button">My List</button>
+          <button
+            className="banner__Button"
+            onClick={() => handlemyList(movie.id)}>My List</button>
         </div>
         <p className="banner__description">
           {truncate(movie?.overview, 150)}

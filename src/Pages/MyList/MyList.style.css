@@ -5,6 +5,16 @@
   overflow-x: scroll;
 }
 
+.empty__div {
+  margin: auto auto;
+  color: gray;
+  text-align: center;
+}
+
+.empty_header {
+  margin-bottom: 10px;
+}
+
 .poster__container::-webkit-scrollbar {
   display: none;
 }

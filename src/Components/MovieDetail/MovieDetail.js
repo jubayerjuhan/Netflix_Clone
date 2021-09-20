@@ -19,9 +19,8 @@ const MovieDetail = ({ movie, trailerUrl }) => {
   console.log(lgdUserInfo);
 
   const handlemyList = (movieId) => {
-    const previousMovies = JSON.parse(localStorage.getItem('myList'))
 
-    const updatedContext = { ...lgdUserInfo, myList: [...lgdUserInfo.myList, ...previousMovies, movieId] };
+    const updatedContext = { ...lgdUserInfo, myList: [...lgdUserInfo.myList, movieId] };
     const uniqueId = [...new Set(updatedContext.myList)]
     updatedContext.myList = uniqueId;
     console.log(updatedContext);
