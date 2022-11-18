@@ -3,6 +3,10 @@ import YouTube from "react-youtube";
 import "./MovieDetail.scss";
 import { useContext } from "react";
 import { LoggedUser } from "./../../App";
+import {
+  getFromLocalStorage,
+  saveAtLocalStorage,
+} from "../../storage/localstorage.js";
 
 const MovieDetail = ({ movie, trailerUrl, movieDetail }) => {
   const [lgdUserInfo, setLgdUserInfo] = useContext(LoggedUser);
@@ -10,7 +14,6 @@ const MovieDetail = ({ movie, trailerUrl, movieDetail }) => {
     height: "390",
     width: "640",
     playerVars: {
-      // https://developers.google.com/youtube/player_parameters
       autoplay: 1,
       controls: 0,
     },
@@ -19,15 +22,18 @@ const MovieDetail = ({ movie, trailerUrl, movieDetail }) => {
   console.log(movieDetail, "19 movie detail");
 
   const handlemyList = (movie) => {
-    setLgdUserInfo({
-      ...lgdUserInfo,
-      myList: [...lgdUserInfo.myList, movie],
-    });
+    let found = false;
+    const localList = JSON.parse(localStorage.getItem("mymovies"));
+    if (!localList || localList.length === 0) {
+      return saveAtLocalStorage("mymovies", [movie]);
+    }
 
-    console.log(lgdUserInfo, "updatedcontext");
+    saveAtLocalStorage("mymovies", [...localList, movie]);
+
+    console.log(getFromLocalStorage("mymovies"), "mymovies");
+    alert("Item Added to The List");
   };
 
-  console.log(lgdUserInfo);
   return (
     <div className="movie_preview">
       <div className="details">
