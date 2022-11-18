@@ -1,10 +1,10 @@
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import './App.css';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import "./App.css";
 import Homepage from "./Pages/Homepage";
-import { createContext, useState } from 'react';
-import Register from './Pages/Register/Register.js';
+import { createContext, useState } from "react";
+import Register from "./Pages/Register/Register.js";
 import SignIn from "./Pages/SignIn/SignIn";
-import ProtectedRoute from './Components/ProtectedRoute/ProtectedRoute.js';
+import ProtectedRoute from "./Components/ProtectedRoute/ProtectedRoute.js";
 import Mylist from "./Pages/MyList/Mylist";
 import ProfileScreen from "./Pages/ProfileScreen/ProfileScreen";
 import { NotFound } from "./Pages/404NotFound/NotFound";
@@ -14,12 +14,10 @@ function App() {
   const [lgdUserInfo, setLgdUserInfo] = useState({
     isLoggedIn: false,
     ui: { spinner: true },
-    myList: []
+    myList: [],
   });
-  console.warn(lgdUserInfo);
   return (
-    <LoggedUser.Provider value={[lgdUserInfo, setLgdUserInfo]} >
-
+    <LoggedUser.Provider value={[lgdUserInfo, setLgdUserInfo]}>
       {console.log(lgdUserInfo)}
       <Router>
         <Switch>
@@ -27,7 +25,7 @@ function App() {
             <Homepage></Homepage>
           </ProtectedRoute>
 
-          <ProtectedRoute path='/user/profile'>
+          <ProtectedRoute path="/user/profile">
             <ProfileScreen />
           </ProtectedRoute>
 
@@ -35,7 +33,7 @@ function App() {
             <Mylist />
           </ProtectedRoute>
 
-          <Route path='/user/profile'>
+          <Route path="/user/profile">
             <ProfileScreen></ProfileScreen>
           </Route>
 
@@ -47,7 +45,7 @@ function App() {
           </Route>
         </Switch>
       </Router>
-    </LoggedUser.Provider >
+    </LoggedUser.Provider>
   );
 }
 
