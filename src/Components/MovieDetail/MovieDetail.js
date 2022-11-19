@@ -1,6 +1,6 @@
 import React from "react";
 import YouTube from "react-youtube";
-import "./MovieDetail.scss";
+import "./MovieDetail.css";
 import { useContext } from "react";
 import { LoggedUser } from "./../../App";
 import {
